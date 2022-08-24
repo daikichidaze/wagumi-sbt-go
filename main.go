@@ -67,7 +67,7 @@ func main() {
 			Name:  "id, i",
 			Value: "",
 			Usage: "Target user id",
-			// Required: true,
+			Required: true,
 		},
 		&cli.StringFlag{
 			Name:    "api_key",

@@ -4,13 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 )
-
-type Log struct {
-	Time    time.Time `json:"time"`
-	Message string    `json:"message"`
-}
 
 func WriteJsonFile(fileName string, object interface{}) error {
 	file, _ := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0600)

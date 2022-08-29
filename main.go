@@ -1,15 +1,20 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/dstotijn/go-notion"
 	"github.com/joho/godotenv"
 	"github.com/urfave/cli/v2"
+
+	"github.com/daikichidaze/wagumi-sbt-go/utils"
 )
 
 var env_file = ".env"
+var log_file_name = "executionData.json"
 var api_key string
 
 var map_prop_id = map[string]string{
@@ -67,8 +72,13 @@ func main() {
 		contribute_db_id := c.String("contribute_db_id")
 
 		client := notion.NewClient(api_key)
+		if !utils.Exists(log_file_name) {
+			makeExecutionData(log_file_name)
+			createMetadata(client, user_db_id, contribute_db_id, user_id)
 
-		createMetadata(client, user_db_id, contribute_db_id, user_id)
+		} else {
+			// updateMetadata()
+		}
 
 		return nil
 
@@ -78,12 +88,6 @@ func main() {
 
 }
 
-func check(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
-
 func loadEnv(file_path string) {
 	err := godotenv.Load(file_path)
 
@@ -91,4 +95,20 @@ func loadEnv(file_path string) {
 		fmt.Printf("読み込み出来ませんでした: %v", err)
 		panic(err)
 	}
+}
+
+func makeExecutionData(filename string) error {
+
+	if utils.Exists(filename) {
+		return errors.New("Exection file exists")
+	}
+
+	ini := utils.Log{
+		Time:    time.Now(),
+		Message: "initialize",
+	}
+
+	err := utils.WriteJsonFile(filename, ini)
+	return err
+
 }

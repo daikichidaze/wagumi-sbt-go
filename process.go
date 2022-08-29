@@ -7,14 +7,17 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/dstotijn/go-notion"
+
+	"github.com/daikichidaze/wagumi-sbt-go/utils"
 )
 
 func processMetadata(client *notion.Client, db_id string, user_id string) {
 	filename := fmt.Sprintf("%s.json", user_id)
 
-	if Exists(filename) {
+	if utils.Exists(filename) {
 
 	} else {
 
@@ -27,18 +30,18 @@ func createMetadata(client *notion.Client, user_db_id string, contribution_db_id
 	user_page := getUserPage(client, user_db_id, user_id)
 	page_id := user_page.ID
 
-	url := user_page.URL
+	url := getNotionExternalURL(user_page.URL)
 	desp := "He/She is one of wagumi members."
 
 	ctx := context.Background()
 	pq := &notion.PaginationQuery{}
 
 	resp_tmp2, err := client.FindPagePropertyByID(ctx, page_id, "name", pq)
-	check(err)
+	utils.Check(err)
 	name := resp_tmp2.Results[0].Title.PlainText
 
 	prop, err := directCallNotionPageProperties(page_id, map_prop_id["icon"])
-	check(err)
+	utils.Check(err)
 	image := prop.Files[0].Name
 
 	cntb := getContributionData(client, contribution_db_id, user_id)
@@ -76,7 +79,7 @@ func getContributionData(client *notion.Client, db_id string, user_id string) *[
 	}
 
 	resp, err := client.QueryDatabase(ctx, db_id, query)
-	check(err)
+	utils.Check(err)
 
 	var contribusions []Contribution
 
@@ -93,29 +96,40 @@ func getContributionData(client *notion.Client, db_id string, user_id string) *[
 		}
 
 		if userSearchResult {
-			var contribution Contribution
-
-			contribution.ExternalUrl = page.URL
-			contribution.Properties.PageId = page.ID
+			page_id := page.ID
+			external_url := getNotionExternalURL(page.URL)
 
 			resp_tmp, err := client.FindPagePropertyByID(ctx, page.ID, "name", pq)
-			check(err)
-			contribution.Name = resp_tmp.Results[0].Title.PlainText
+			utils.Check(err)
+			name := resp_tmp.Results[0].Title.PlainText
 
 			prop, err := directCallNotionPageProperties(page.ID, map_prop_id["image"])
-			check(err)
-			contribution.Image = prop.Files[0].File.Url
+			utils.Check(err)
+			image := prop.Files[0].File.Url
 
 			prop, err = directCallNotionPageProperties(page.ID, map_prop_id["description"])
-			check(err)
-			contribution.Description = prop.Results[0].RichText.PlainText
+			utils.Check(err)
+			description := prop.Results[0].RichText.PlainText
 
 			prop, err = directCallNotionPageProperties(page.ID, map_prop_id["date"])
-			check(err)
-			contribution.Properties.Date.Start = prop.Date.Start
-			contribution.Properties.Date.End = prop.Date.End
+			utils.Check(err)
+			start := prop.Date.Start
+			end := prop.Date.End
 
-			contribusions = append(contribusions, contribution)
+			contribusions = append(contribusions,
+				Contribution{
+					Name:        name,
+					Description: description,
+					Image:       image,
+					ExternalUrl: external_url,
+					Properties: ContributionProperty{
+						PageId: page_id,
+						Date: Date{
+							Start: start,
+							End:   end,
+						},
+					},
+				})
 		}
 	}
 	return &contribusions
@@ -175,7 +189,32 @@ func getUserPage(client *notion.Client, db_id string, user_id string) notion.Pag
 	return resp.Results[0]
 }
 
-func Exists(filename string) bool {
-	_, err := os.Stat(filename)
-	return err == nil
+func getNotionExternalURL(internal_url string) string {
+	external_base_url := "https://wagumi-dev.notion.site/"
+
+	split_result1 := strings.Split(internal_url, "/")
+	split_result2 := strings.Split(split_result1[len(split_result1)-1], "-")
+
+	result, err := utils.UrlJoin(external_base_url, split_result2[len(split_result2)-1])
+	utils.Check(err)
+	return result
+
+}
+
+func exportMetadataJsonFile(filename string, data Metadata) error {
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	enc := json.NewEncoder(f)
+	enc.SetEscapeHTML(false)
+	err = enc.Encode(data)
+
+	if err != nil {
+		return err
+	}
+	return nil
+
 }

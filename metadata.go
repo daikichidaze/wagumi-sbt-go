@@ -25,8 +25,10 @@ type Contribution struct {
 type ContributionProperty struct {
 	PageId    string   `json:"page_id"`
 	Reference []string `json:"reference"`
-	Date      struct {
-		Start string `json:"start"`
-		End   string `json:"end"`
-	} `json:"date"`
+	Date      Date     `json:"date"`
+}
+
+type Date struct {
+	Start string `json:"start"`
+	End   string `json:"end"`
 }

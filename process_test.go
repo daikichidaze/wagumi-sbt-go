@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
@@ -16,6 +17,26 @@ func TestCreateNewMetadata(t *testing.T) {
 
 	client := notion.NewClient(api_key)
 
-	createMetadata(client, user_db_id, contribution_db_id, test_user_id)
+	md := createMetadata(client, user_db_id, contribution_db_id, test_user_id)
+
+	err := exportMetadataJsonFile(fmt.Sprintf("%s.json", test_user_id), md)
+	//TODO finalize test code
+	if err != nil {
+		t.Error("Faild for json output")
+	}
+	t.Log("Finished TestCreateNewMetadata")
+
+}
+
+func TestGetNotionExternalURL(t *testing.T) {
+	internal_url := "https://www.notion.so/daikichi-9f2134fdd56246859220a0d551174783"
+	output_url := getNotionExternalURL(internal_url)
+
+	expected_result := "https://wagumi-dev.notion.site/9f2134fdd56246859220a0d551174783"
+
+	if output_url != expected_result {
+		t.Error("Notion url conversion error")
+	}
+	t.Log("Finished TestGetNotionExternalURL")
 
 }

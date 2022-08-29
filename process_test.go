@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/dstotijn/go-notion"
 )
@@ -16,8 +17,9 @@ func TestCreateNewMetadata(t *testing.T) {
 	test_user_id := os.Getenv("TEST_USER_ID")
 
 	client := notion.NewClient(api_key)
+	ti := time.Date(2022, time.August, 1, 0, 0, 0, 0, time.UTC)
 
-	md := createMetadata(client, user_db_id, contribution_db_id, test_user_id)
+	md := createMetadata(client, user_db_id, contribution_db_id, test_user_id, ti)
 
 	err := exportMetadataJsonFile(fmt.Sprintf("%s.json", test_user_id), md)
 	//TODO finalize test code
@@ -38,5 +40,21 @@ func TestGetNotionExternalURL(t *testing.T) {
 		t.Error("Notion url conversion error")
 	}
 	t.Log("Finished TestGetNotionExternalURL")
+
+}
+
+func TestGetContributionData(t *testing.T) {
+
+	loadEnv(env_file)
+	api_key = os.Getenv("NOTION_API_TOKEN")
+	contribution_db_id := os.Getenv("WAGUMI_DATABASE_ID")
+	// user_db_id := os.Getenv("WAGUMI_USER_DATABASE_ID")
+	test_user_id := os.Getenv("TEST_USER_ID")
+
+	client := notion.NewClient(api_key)
+
+	ti := time.Date(2022, time.August, 1, 0, 0, 0, 0, time.UTC)
+	cntr := getContributionData(client, contribution_db_id, test_user_id, ti)
+	fmt.Println(*cntr)
 
 }

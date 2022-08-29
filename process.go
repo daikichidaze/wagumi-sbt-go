@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/dstotijn/go-notion"
 
@@ -25,7 +26,9 @@ func processMetadata(client *notion.Client, db_id string, user_id string) {
 
 }
 
-func createMetadata(client *notion.Client, user_db_id string, contribution_db_id string, user_id string) Metadata {
+func createMetadata(
+	client *notion.Client, user_db_id string, contribution_db_id string, user_id string,
+	last_execution_time time.Time) Metadata {
 
 	user_page := getUserPage(client, user_db_id, user_id)
 	page_id := user_page.ID
@@ -44,7 +47,7 @@ func createMetadata(client *notion.Client, user_db_id string, contribution_db_id
 	utils.Check(err)
 	image := prop.Files[0].Name
 
-	cntb := getContributionData(client, contribution_db_id, user_id)
+	cntb := getContributionData(client, contribution_db_id, user_id, last_execution_time)
 
 	return Metadata{
 		Name:         name,
@@ -58,17 +61,17 @@ func createMetadata(client *notion.Client, user_db_id string, contribution_db_id
 
 }
 
-func getContributionData(client *notion.Client, db_id string, user_id string) *[]Contribution {
+func getContributionData(client *notion.Client, db_id string, user_id string, last_execution_time time.Time) *[]Contribution {
 	ctx := context.Background()
 	pq := &notion.PaginationQuery{}
 
 	query := &notion.DatabaseQuery{
-		// Filter: &notion.DatabaseQueryFilter{
-		// 	Property: "userid",
-		// 	Relation: &notion.RelationDatabaseQueryFilter{
-		// 		Contains: user_id,
-		// 	},
-		// },
+		Filter: &notion.DatabaseQueryFilter{
+			Property: "last_edited_time",
+			Date: &notion.DateDatabaseQueryFilter{
+				After: &last_execution_time,
+			},
+		},
 		Sorts: []notion.DatabaseQuerySort{
 			{
 				Property:  "last_edited_time",
@@ -81,7 +84,7 @@ func getContributionData(client *notion.Client, db_id string, user_id string) *[
 	resp, err := client.QueryDatabase(ctx, db_id, query)
 	utils.Check(err)
 
-	var contribusions []Contribution
+	contribusions := make([]Contribution, 0)
 
 	for _, page := range resp.Results {
 

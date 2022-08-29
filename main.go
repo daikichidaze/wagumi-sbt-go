@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"time"
@@ -72,13 +71,19 @@ func main() {
 		contribute_db_id := c.String("contribute_db_id")
 
 		client := notion.NewClient(api_key)
-		if !utils.Exists(log_file_name) {
-			makeExecutionData(log_file_name)
-			createMetadata(client, user_db_id, contribute_db_id, user_id)
 
+		var last_execution_date time.Time
+		if !utils.Exists(log_file_name) {
+			makeExecutionData(log_file_name, user_id)
 		} else {
-			// updateMetadata()
+			logs, _ := readLastExecution(log_file_name)
+			last_execution_date = logs[len(logs)-1].Time //TODO: sort
+
 		}
+
+		metadata := createMetadata(client, user_db_id, contribute_db_id, user_id, last_execution_date)
+		err := exportMetadataJsonFile(fmt.Sprintf("%s.json", user_id), metadata)
+		utils.Check(err)
 
 		return nil
 
@@ -92,23 +97,7 @@ func loadEnv(file_path string) {
 	err := godotenv.Load(file_path)
 
 	if err != nil {
-		fmt.Printf("読み込み出来ませんでした: %v", err)
+		fmt.Printf("Faild to read: %v", err)
 		panic(err)
 	}
-}
-
-func makeExecutionData(filename string) error {
-
-	if utils.Exists(filename) {
-		return errors.New("Exection file exists")
-	}
-
-	ini := utils.Log{
-		Time:    time.Now(),
-		Message: "initialize",
-	}
-
-	err := utils.WriteJsonFile(filename, ini)
-	return err
-
 }

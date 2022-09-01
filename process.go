@@ -26,8 +26,8 @@ func processMetadata(client *notion.Client, db_id string, user_id string) {
 
 }
 
-func createMetadata(
-	client *notion.Client, user_db_id string, contribution_db_id string, user_id string,
+func createMetadata(client *notion.Client,
+	user_db_id string, contribution_db_id string, user_id string,
 	last_execution_time time.Time) Metadata {
 
 	user_page := getUserPage(client, user_db_id, user_id)
@@ -218,6 +218,7 @@ func exportMetadataJsonFile(filename string, data Metadata) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 
 }

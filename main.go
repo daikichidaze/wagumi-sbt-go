@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"sort"
@@ -75,19 +74,16 @@ func main() {
 		client := notion.NewClient(api_key)
 
 		var last_exe_date time.Time
-		if !utils.Exists(log_file_name) {
+		var last_exe_json_name string
+		if !utils.Exists(log_file_name) { // First execution
 			makeExecutionData(log_file_name, user_id)
-		} else {
-			logs, _ := readLastExecution(log_file_name)
+		} else { // From second execution
+			logs, _ := utils.ReadMetadata[[]Log](log_file_name)
 			sort.Slice(logs, func(i, j int) bool { return logs[i].Time.Before(logs[j].Time) })
 			last_exe_log := logs[len(logs)-1]
 			last_exe_date = last_exe_log.Time
-			last_exe_user := last_exe_log.UserId
 
-			last_exe_json_name := fmt.Sprintf("%s.json", last_exe_user)
-			if !utils.Exists(last_exe_json_name) {
-				return errors.New("Target json file does not exists: " + last_exe_json_name)
-			}
+			last_exe_json_name = fmt.Sprintf("%s.json", last_exe_log.UserId)
 
 		}
 
@@ -95,6 +91,17 @@ func main() {
 
 		var message string
 		if len(metadata.Properties.Contribusions) > 0 {
+			// Only update the metadata when there are new contribusion data
+			if last_exe_json_name != "" {
+				// Add previouse contribution data
+				last_metadata, err := utils.ReadMetadata[Metadata](last_exe_json_name)
+				utils.Check(err)
+
+				metadata.Properties.Contribusions =
+					append(last_metadata.Properties.Contribusions, metadata.Properties.Contribusions...)
+			}
+
+			// export metadata json
 			err := exportMetadataJsonFile(fmt.Sprintf("%s.json", user_id), metadata)
 			utils.Check(err)
 
@@ -102,6 +109,7 @@ func main() {
 		} else {
 			message = fmt.Sprintf("no updates in %s", log_file_name)
 		}
+
 		err := updateExecutionData(log_file_name, message, user_id)
 		utils.Check(err)
 

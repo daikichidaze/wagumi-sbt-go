@@ -2,7 +2,9 @@ package utils
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 )
 
@@ -26,4 +28,21 @@ func WriteJsonFile(fileName string, object interface{}) error {
 		_, err = file.WriteAt([]byte(fmt.Sprintf(`,%s]`, json_)), leng-1)
 	}
 	return err
+}
+
+func ReadMetadata[T any](filename string) (T, error) {
+	var data T
+
+	if !Exists(filename) {
+		return data, errors.New("Target file does not exists: " + filename)
+	}
+
+	raw, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return data, err
+	}
+
+	json.Unmarshal(raw, &data)
+	return data, nil
+
 }

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"errors"
-	"io/ioutil"
 	"time"
 
 	"github.com/daikichidaze/wagumi-sbt-go/utils"
@@ -18,7 +16,7 @@ type Log struct {
 func makeExecutionData(filename, userid string) error {
 
 	if utils.Exists(filename) {
-		return errors.New("Exection file exists")
+		return errors.New("Exection data file exists")
 	}
 
 	ini := Log{
@@ -32,19 +30,18 @@ func makeExecutionData(filename, userid string) error {
 
 }
 
-func readLastExecution(filename string) ([]Log, error) {
-	var logs []Log
-
+func updateExecutionData(filename, message, user_id string) error {
 	if !utils.Exists(filename) {
-		return logs, errors.New("Execution file does not exists")
+		return errors.New("Execution data file does not exists")
 	}
 
-	raw, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return logs, err
+	log := Log{
+		Time:    time.Now(),
+		Message: message,
+		UserId:  user_id,
 	}
 
-	json.Unmarshal(raw, &logs)
-	return logs, nil
+	err := utils.WriteJsonFile(filename, log)
+	return err
 
 }

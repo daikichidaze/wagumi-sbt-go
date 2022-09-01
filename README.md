@@ -1,0 +1,1 @@
+# Wagumi Token working group

@@ -1,8 +1,10 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
+	"sort"
 	"time"
 
 	"github.com/dstotijn/go-notion"
@@ -72,17 +74,35 @@ func main() {
 
 		client := notion.NewClient(api_key)
 
-		var last_execution_date time.Time
+		var last_exe_date time.Time
 		if !utils.Exists(log_file_name) {
 			makeExecutionData(log_file_name, user_id)
 		} else {
 			logs, _ := readLastExecution(log_file_name)
-			last_execution_date = logs[len(logs)-1].Time //TODO: sort
+			sort.Slice(logs, func(i, j int) bool { return logs[i].Time.Before(logs[j].Time) })
+			last_exe_log := logs[len(logs)-1]
+			last_exe_date = last_exe_log.Time
+			last_exe_user := last_exe_log.UserId
+
+			last_exe_json_name := fmt.Sprintf("%s.json", last_exe_user)
+			if !utils.Exists(last_exe_json_name) {
+				return errors.New("Target json file does not exists: " + last_exe_json_name)
+			}
 
 		}
 
-		metadata := createMetadata(client, user_db_id, contribute_db_id, user_id, last_execution_date)
-		err := exportMetadataJsonFile(fmt.Sprintf("%s.json", user_id), metadata)
+		metadata := createMetadata(client, user_db_id, contribute_db_id, user_id, last_exe_date)
+
+		var message string
+		if len(metadata.Properties.Contribusions) > 0 {
+			err := exportMetadataJsonFile(fmt.Sprintf("%s.json", user_id), metadata)
+			utils.Check(err)
+
+			message = fmt.Sprintf("update %s", log_file_name)
+		} else {
+			message = fmt.Sprintf("no updates in %s", log_file_name)
+		}
+		err := updateExecutionData(log_file_name, message, user_id)
 		utils.Check(err)
 
 		return nil

@@ -75,8 +75,10 @@ func main() {
 		var last_exe_date time.Time
 		var last_exe_json_name string
 		if !utils.Exists(log_file_name) { // First execution
+			fmt.Println("This is first execution. Creating " + log_file_name)
 			makeExecutionData(log_file_name)
 		} else { // From second execution
+			fmt.Println("Load " + log_file_name)
 			logs, _ := utils.ReadMetadata[[]Log](log_file_name)
 			last_exe_log := findLastExecutionResult(logs, user_id)
 
@@ -87,9 +89,16 @@ func main() {
 
 		}
 
+		metadata_file_name := fmt.Sprintf("%s.json", user_id)
+
+		if last_exe_json_name == "" {
+			fmt.Println("Start creating " + metadata_file_name)
+		} else {
+			fmt.Println("Start updating " + metadata_file_name)
+		}
+
 		metadata := createMetadata(client, user_db_id, contribute_db_id, user_id, last_exe_date)
 
-		metadata_file_name := fmt.Sprintf("%s.json", user_id)
 		var message string
 		if len(metadata.Properties.Contribusions) > 0 {
 			// Only update the metadata when there are new contribusion data
@@ -110,14 +119,17 @@ func main() {
 			// export metadata json
 			err := exportMetadataJsonFile(metadata_file_name, metadata)
 			utils.Check(err)
+			fmt.Println(metadata_file_name + " updated")
 
 		} else {
 			// case of no new contributions
 			message = fmt.Sprintf("no updates in %s", metadata_file_name)
+			fmt.Println(message)
 		}
 
 		err := updateExecutionData(log_file_name, message, user_id)
 		utils.Check(err)
+		fmt.Println(log_file_name + " updated")
 
 		return nil
 

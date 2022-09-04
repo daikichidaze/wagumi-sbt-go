@@ -158,7 +158,7 @@ func processMetadata(client *notion.Client,
 
 	for key, value := range user_contribution_map {
 		md := createSingleUserMetadataFromMap(client, user_db_id, key, value)
-		msg, err := postProcessing(md, last_exe_log, md.filename)
+		msg, err := postProcessingMetadata(md, last_exe_log, md.filename)
 		if err != nil {
 			return err
 		}

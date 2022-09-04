@@ -15,43 +15,6 @@ import (
 	"github.com/daikichidaze/wagumi-sbt-go/utils"
 )
 
-func postProcessing(metadata Metadata, last_exe_log Log, metadata_file_name string) (string, error) {
-	var message string
-
-	// Only update the metadata when there are new contribusion data
-
-	if len(metadata.Properties.Contribusions) > 0 {
-		if utils.Exists(metadata_file_name) {
-			// Add previouse contribution data
-			last_metadata, err := utils.ReadJsonFile[Metadata](metadata_file_name)
-			if err != nil {
-				return "", err
-			}
-
-			metadata.Properties.Contribusions =
-				append(last_metadata.Properties.Contribusions, metadata.Properties.Contribusions...)
-
-			message = fmt.Sprintf("update metadata/%s", metadata_file_name)
-
-		} else {
-			message = fmt.Sprintf("create metadata/%s", metadata_file_name)
-		}
-
-		// export metadata json
-		err := exportMetadataJsonFile(metadata_file_name, metadata)
-		if err != nil {
-			return "", err
-		}
-		fmt.Println(metadata_file_name + " updated")
-	} else {
-		// case of no new contributions
-		message = fmt.Sprintf("no updates in %s", metadata_file_name)
-		fmt.Println(message)
-	}
-	return message, nil
-
-}
-
 func makeUserPageidMap(client *notion.Client, page_map map[string]Contribution) map[string]([]string) {
 
 	result := make(map[string]([]string))
@@ -156,51 +119,40 @@ func createContribution(client *notion.Client,
 
 }
 
-func getContributionDataFromMap(client *notion.Client, user_pages []notion.Page) *[]Contribution {
-	ctx := context.Background()
-	pq := &notion.PaginationQuery{}
+func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_name string) (string, error) {
+	var message string
 
-	contributions := make([]Contribution, 0)
+	// Only update the metadata when there are new contribusion data
 
-	for _, page := range user_pages {
+	if len(metadata.Properties.Contribusions) > 0 {
+		if utils.Exists(metadata_file_name) {
+			// Add previouse contribution data
+			last_metadata, err := utils.ReadJsonFile[Metadata](metadata_file_name)
+			if err != nil {
+				return "", err
+			}
 
-		page_id := page.ID
-		external_url := getNotionExternalURL(page.URL)
+			metadata.Properties.Contribusions =
+				append(last_metadata.Properties.Contribusions, metadata.Properties.Contribusions...)
 
-		resp_tmp, err := client.FindPagePropertyByID(ctx, page_id, "name", pq)
-		utils.Check(err)
-		name := resp_tmp.Results[0].Title.PlainText
+			message = fmt.Sprintf("update metadata/%s", metadata_file_name)
 
-		prop, err := directCallNotionPageProperties(page_id, map_prop_id["image"])
-		utils.Check(err)
-		image := prop.Files[0].File.Url
+		} else {
+			message = fmt.Sprintf("create metadata/%s", metadata_file_name)
+		}
 
-		prop, err = directCallNotionPageProperties(page_id, map_prop_id["description"])
-		utils.Check(err)
-		description := prop.Results[0].RichText.PlainText
-
-		prop, err = directCallNotionPageProperties(page_id, map_prop_id["date"])
-		utils.Check(err)
-		start := prop.Date.Start
-		end := prop.Date.End
-
-		contributions = append(contributions,
-			Contribution{
-				Name:        name,
-				Description: description,
-				Image:       image,
-				ExternalUrl: external_url,
-				Properties: ContributionProperty{
-					PageId: page_id,
-					Date: Date{
-						Start: start,
-						End:   end,
-					},
-				},
-			})
-
+		// export metadata json
+		err := exportMetadataJsonFile(metadata_file_name, metadata)
+		if err != nil {
+			return "", err
+		}
+		fmt.Println(metadata_file_name + " updated")
+	} else {
+		// case of no new contributions
+		message = fmt.Sprintf("no updates in %s", metadata_file_name)
+		fmt.Println(message)
 	}
-	return &contributions
+	return message, nil
 
 }
 

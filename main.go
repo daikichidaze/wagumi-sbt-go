@@ -15,6 +15,7 @@ import (
 var env_file = ".env"
 var log_file_name = "executionData.json"
 var api_key string
+var page_contribution_map map[string]Contribution
 
 var map_prop_id = map[string]string{
 	"name":        "title",
@@ -79,8 +80,8 @@ func main() {
 			makeExecutionData(log_file_name)
 		} else { // From second execution
 			fmt.Println("Load " + log_file_name)
-			logs, _ := utils.ReadMetadata[[]Log](log_file_name)
-			last_exe_log := findLastExecutionResult(logs, user_id)
+			logs, _ := utils.ReadJsonFile[[]Log](log_file_name)
+			last_exe_log := findLastExecutionResultByUserId(logs, user_id)
 
 			last_exe_date = last_exe_log.Time
 			if last_exe_log.UserId != "" {
@@ -97,14 +98,14 @@ func main() {
 			fmt.Println("Start updating " + metadata_file_name)
 		}
 
-		metadata := createMetadata(client, user_db_id, contribute_db_id, user_id, last_exe_date)
+		metadata := createSingleUserMetadataFromDB(client, user_db_id, contribute_db_id, user_id, last_exe_date)
 
 		var message string
 		if len(metadata.Properties.Contribusions) > 0 {
 			// Only update the metadata when there are new contribusion data
 			if last_exe_json_name != "" {
 				// Add previouse contribution data
-				last_metadata, err := utils.ReadMetadata[Metadata](last_exe_json_name)
+				last_metadata, err := utils.ReadJsonFile[Metadata](last_exe_json_name)
 				utils.Check(err)
 
 				metadata.Properties.Contribusions =
@@ -127,7 +128,7 @@ func main() {
 			fmt.Println(message)
 		}
 
-		err := updateExecutionData(log_file_name, message, user_id)
+		err := updateExecutionData(log_file_name, message, user_id, time.Now())
 		utils.Check(err)
 		fmt.Println(log_file_name + " updated")
 

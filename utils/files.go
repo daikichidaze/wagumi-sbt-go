@@ -30,7 +30,7 @@ func WriteJsonFile(fileName string, object interface{}) error {
 	return err
 }
 
-func ReadMetadata[T any](filename string) (T, error) {
+func ReadJsonFile[T any](filename string) (T, error) {
 	var data T
 
 	if !Exists(filename) {

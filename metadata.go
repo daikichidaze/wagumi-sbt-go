@@ -6,6 +6,8 @@ type Metadata struct {
 	Image        string           `json:"image"`
 	External_url string           `json:"external_url"`
 	Properties   MetadetaProperty `json:"properties"`
+	id           string
+	filename     string
 }
 
 type MetadetaProperty struct {
@@ -20,6 +22,7 @@ type Contribution struct {
 	Image       string               `json:"image"`
 	ExternalUrl string               `json:"external_url"`
 	Properties  ContributionProperty `json:"properties"`
+	users       []string
 }
 
 type ContributionProperty struct {

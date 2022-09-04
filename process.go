@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"sort"
 	"strings"
 	"time"
 
@@ -22,9 +23,8 @@ func makeUserPageidMap(client *notion.Client, page_map map[string]Contribution) 
 	for pageid, contribusion := range page_map {
 
 		for _, userid := range contribusion.users {
-			_, ok := result[userid]
 
-			if !ok {
+			if _, ok := result[userid]; !ok {
 				result[userid] = make([]string, 0)
 			}
 
@@ -123,35 +123,46 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 	var message string
 
 	// Only update the metadata when there are new contribusion data
-
-	if len(metadata.Properties.Contribusions) > 0 {
-		if utils.Exists(metadata_file_name) {
-			// Add previouse contribution data
-			last_metadata, err := utils.ReadJsonFile[Metadata](metadata_file_name)
-			if err != nil {
-				return "", err
-			}
-
-			metadata.Properties.Contribusions =
-				append(last_metadata.Properties.Contribusions, metadata.Properties.Contribusions...)
-
-			message = fmt.Sprintf("update metadata/%s", metadata_file_name)
-
-		} else {
-			message = fmt.Sprintf("create metadata/%s", metadata_file_name)
-		}
-
-		// export metadata json
-		err := exportMetadataJsonFile(metadata_file_name, metadata)
-		if err != nil {
-			return "", err
-		}
-		fmt.Println(metadata_file_name + " updated")
-	} else {
+	if len(metadata.Properties.Contribusions) == 0 {
 		// case of no new contributions
 		message = fmt.Sprintf("no updates in %s", metadata_file_name)
 		fmt.Println(message)
+		return message, nil
+
 	}
+
+	if utils.Exists(metadata_file_name) {
+		// Add previous contribution data
+		last_metadata, err := utils.ReadJsonFile[Metadata](metadata_file_name)
+		if err != nil {
+			return "", err
+		}
+
+		// TODO delete duplicates
+		for _, previous_contribution := range last_metadata.Properties.Contribusions {
+			if _, ok := page_contribution_map[previous_contribution.Properties.PageId]; !ok {
+				metadata.Properties.Contribusions = append(metadata.Properties.Contribusions, previous_contribution)
+			}
+		}
+
+		message = fmt.Sprintf("update metadata/%s", metadata_file_name)
+
+	} else {
+		message = fmt.Sprintf("create metadata/%s", metadata_file_name)
+	}
+
+	sort.Slice(metadata.Properties.Contribusions,
+		func(i, j int) bool {
+			return metadata.Properties.Contribusions[i].Properties.Date.Start < metadata.Properties.Contribusions[j].Properties.Date.Start
+		})
+
+	// export metadata json
+	err := exportMetadataJsonFile(metadata_file_name, metadata)
+	if err != nil {
+		return "", err
+	}
+	fmt.Println(metadata_file_name + " updated")
+
 	return message, nil
 
 }

@@ -67,6 +67,8 @@ func main() {
 		},
 	}
 	app.Action = func(c *cli.Context) error {
+
+		start := time.Now()
 		// user_id := c.String("id")
 		api_key = c.String("api_key")
 		user_db_id := c.String("user_db_id")
@@ -88,6 +90,9 @@ func main() {
 
 		err = processMetadata(client, user_db_id, contribute_db_id, last_exe_log)
 		utils.Check(err)
+
+		end := time.Now()
+		fmt.Println("Execution time:", end.Sub(start))
 
 		return nil
 
@@ -134,6 +139,7 @@ func processMetadata(client *notion.Client,
 		},
 	}
 
+	fmt.Println("Call Notion API")
 	resp, err := client.QueryDatabase(ctx, contribution_db_id, query)
 	if err != nil {
 		return err
@@ -149,6 +155,7 @@ func processMetadata(client *notion.Client,
 		return nil
 	}
 
+	fmt.Println("Metadata processing...")
 	page_contribution_map = make(map[string]Contribution)
 	for _, page := range resp.Results {
 		page_contribution_map[page.ID] = createContribution(client, pq, page, ctx)
@@ -156,7 +163,9 @@ func processMetadata(client *notion.Client,
 
 	user_contribution_map := makeUserPageidMap(client, page_contribution_map)
 
+	fmt.Println("Export json files...")
 	for key, value := range user_contribution_map {
+
 		md := createSingleUserMetadataFromMap(client, user_db_id, key, value)
 		msg, err := postProcessingMetadata(md, last_exe_log, md.filename)
 		if err != nil {
@@ -172,4 +181,5 @@ func processMetadata(client *notion.Client,
 
 	fmt.Println(log_file_name + " updated")
 	return nil
+
 }

@@ -15,65 +15,6 @@ import (
 	"github.com/daikichidaze/wagumi-sbt-go/utils"
 )
 
-func processMetadata(client *notion.Client,
-	user_db_id string, contribution_db_id string, last_exe_log Log) {
-
-	ctx := context.Background()
-	pq := &notion.PaginationQuery{}
-	execution_timestamp := time.Now()
-
-	var filer_timestamp time.Time
-	if last_exe_log.Message != "initialize" {
-		filer_timestamp = last_exe_log.Time
-	}
-
-	query := &notion.DatabaseQuery{
-		Filter: &notion.DatabaseQueryFilter{
-			Property: "last_edited_time",
-			Date: &notion.DateDatabaseQueryFilter{
-				After: &filer_timestamp,
-			},
-		},
-		Sorts: []notion.DatabaseQuerySort{
-			{
-				Property:  "last_edited_time",
-				Timestamp: notion.SortTimeStampLastEditedTime,
-				Direction: notion.SortDirAsc,
-			},
-		},
-	}
-
-	resp, err := client.QueryDatabase(ctx, contribution_db_id, query)
-	utils.Check(err)
-
-	if len(resp.Results) == 0 {
-		err = updateExecutionData(log_file_name, "no updates", "", execution_timestamp)
-		utils.Check(err)
-		fmt.Println("No updates")
-		return
-	}
-
-	page_contribution_map = make(map[string]Contribution)
-	for _, page := range resp.Results {
-		page_contribution_map[page.ID] = createContribution(client, pq, page, ctx)
-	}
-
-	user_contribution_map := makeUserPageidMap(client, page_contribution_map)
-
-	for key, value := range user_contribution_map {
-		md := createSingleUserMetadataFromMap(client, user_db_id, key, value)
-		msg, err := postProcessing(md, last_exe_log, md.filename)
-		utils.Check(err)
-
-		err = updateExecutionData(log_file_name, msg, key, execution_timestamp)
-		utils.Check(err)
-
-	}
-
-	fmt.Println(log_file_name + " updated")
-
-}
-
 func postProcessing(metadata Metadata, last_exe_log Log, metadata_file_name string) (string, error) {
 	var message string
 

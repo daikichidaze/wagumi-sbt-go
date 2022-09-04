@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"time"
@@ -38,7 +39,7 @@ func main() {
 			Name:     "id, i",
 			Value:    "",
 			Usage:    "Target user id",
-			Required: true,
+			Required: false,
 		},
 		&cli.StringFlag{
 			Name:    "api_key",
@@ -66,71 +67,27 @@ func main() {
 		},
 	}
 	app.Action = func(c *cli.Context) error {
-		user_id := c.String("id")
+		// user_id := c.String("id")
 		api_key = c.String("api_key")
 		user_db_id := c.String("user_db_id")
 		contribute_db_id := c.String("contribute_db_id")
 
 		client := notion.NewClient(api_key)
 
-		var last_exe_date time.Time
-		var last_exe_json_name string
 		if !utils.Exists(log_file_name) { // First execution
 			fmt.Println("This is first execution. Creating " + log_file_name)
 			makeExecutionData(log_file_name)
 		} else { // From second execution
 			fmt.Println("Load " + log_file_name)
-			logs, _ := utils.ReadJsonFile[[]Log](log_file_name)
-			last_exe_log := findLastExecutionResultByUserId(logs, user_id)
-
-			last_exe_date = last_exe_log.Time
-			if last_exe_log.UserId != "" {
-				last_exe_json_name = fmt.Sprintf("%s.json", last_exe_log.UserId)
-			}
 
 		}
 
-		metadata_file_name := fmt.Sprintf("%s.json", user_id)
-
-		if last_exe_json_name == "" {
-			fmt.Println("Start creating " + metadata_file_name)
-		} else {
-			fmt.Println("Start updating " + metadata_file_name)
-		}
-
-		metadata := createSingleUserMetadataFromDB(client, user_db_id, contribute_db_id, user_id, last_exe_date)
-
-		var message string
-		if len(metadata.Properties.Contribusions) > 0 {
-			// Only update the metadata when there are new contribusion data
-			if last_exe_json_name != "" {
-				// Add previouse contribution data
-				last_metadata, err := utils.ReadJsonFile[Metadata](last_exe_json_name)
-				utils.Check(err)
-
-				metadata.Properties.Contribusions =
-					append(last_metadata.Properties.Contribusions, metadata.Properties.Contribusions...)
-
-				message = fmt.Sprintf("update metadata/%s", metadata_file_name)
-			} else {
-				message = fmt.Sprintf("create metadata/%s", metadata_file_name)
-
-			}
-
-			// export metadata json
-			err := exportMetadataJsonFile(metadata_file_name, metadata)
-			utils.Check(err)
-			fmt.Println(metadata_file_name + " updated")
-
-		} else {
-			// case of no new contributions
-			message = fmt.Sprintf("no updates in %s", metadata_file_name)
-			fmt.Println(message)
-		}
-
-		err := updateExecutionData(log_file_name, message, user_id, time.Now())
+		logs, err := utils.ReadJsonFile[[]Log](log_file_name)
 		utils.Check(err)
-		fmt.Println(log_file_name + " updated")
+		last_exe_log := getLastExecutionResultsMap(logs)
+
+		err = processMetadata(client, user_db_id, contribute_db_id, last_exe_log)
+		utils.Check(err)
 
 		return nil
 
@@ -147,4 +104,72 @@ func loadEnv(file_path string) {
 		fmt.Printf("Faild to read: %v", err)
 		panic(err)
 	}
+}
+
+func processMetadata(client *notion.Client,
+	user_db_id string, contribution_db_id string, last_exe_log Log) error {
+
+	ctx := context.Background()
+	pq := &notion.PaginationQuery{}
+	execution_timestamp := time.Now()
+
+	var filer_timestamp time.Time
+	if last_exe_log.Message != "initialize" {
+		filer_timestamp = last_exe_log.Time
+	}
+
+	query := &notion.DatabaseQuery{
+		Filter: &notion.DatabaseQueryFilter{
+			Property: "last_edited_time",
+			Date: &notion.DateDatabaseQueryFilter{
+				After: &filer_timestamp,
+			},
+		},
+		Sorts: []notion.DatabaseQuerySort{
+			{
+				Property:  "last_edited_time",
+				Timestamp: notion.SortTimeStampLastEditedTime,
+				Direction: notion.SortDirAsc,
+			},
+		},
+	}
+
+	resp, err := client.QueryDatabase(ctx, contribution_db_id, query)
+	if err != nil {
+		return err
+	}
+
+	if len(resp.Results) == 0 {
+		err = updateExecutionData(log_file_name, "no updates", "", execution_timestamp)
+		if err != nil {
+			return err
+		}
+
+		fmt.Println("No updates")
+		return nil
+	}
+
+	page_contribution_map = make(map[string]Contribution)
+	for _, page := range resp.Results {
+		page_contribution_map[page.ID] = createContribution(client, pq, page, ctx)
+	}
+
+	user_contribution_map := makeUserPageidMap(client, page_contribution_map)
+
+	for key, value := range user_contribution_map {
+		md := createSingleUserMetadataFromMap(client, user_db_id, key, value)
+		msg, err := postProcessing(md, last_exe_log, md.filename)
+		if err != nil {
+			return err
+		}
+
+		err = updateExecutionData(log_file_name, msg, key, execution_timestamp)
+		if err != nil {
+			return err
+		}
+
+	}
+
+	fmt.Println(log_file_name + " updated")
+	return nil
 }

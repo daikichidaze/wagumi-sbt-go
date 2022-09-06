@@ -45,7 +45,7 @@ func main() {
 			Name:    "api_key",
 			Value:   "",
 			Usage:   "Notion API token",
-			EnvVars: []string{"NOTION_API_TOKEN"},
+			EnvVars: []string{"WAGUMI_SAMURAI_API_TOKEN"},
 		},
 		&cli.StringFlag{
 			Name:    "contribute_db_id",

@@ -1,13 +1,11 @@
 package main
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
 	"sort"
 	"strings"
 	"time"
@@ -158,7 +156,7 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 		})
 
 	// export metadata json
-	err := exportMetadataJsonFile(metadata_file_name, metadata)
+	err := utils.ExportJsonFile(metadata_file_name, metadata)
 	if err != nil {
 		return "", err
 	}
@@ -350,29 +348,4 @@ func getNotionExternalURL(internal_url string) string {
 
 func getMetadataFilename(user_id string) string {
 	return fmt.Sprintf("%s.json", user_id)
-}
-
-func exportMetadataJsonFile(filename string, data Metadata) error {
-	f, err := os.Create(filename)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-
-	b, err := json.Marshal(data)
-	if err != nil {
-		return err
-	}
-
-	b, err = utils.UnescapeUnicodeCharactersInJSON(b)
-	var out bytes.Buffer
-	err = json.Indent(&out, b, "", strings.Repeat(" ", 2))
-	if err != nil {
-		return err
-	}
-
-	_, err = f.Write(out.Bytes())
-
-	return nil
-
 }

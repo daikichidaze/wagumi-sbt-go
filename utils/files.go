@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -30,6 +31,31 @@ func WriteJsonFile(fileName string, object interface{}) error {
 		_, err = file.WriteAt([]byte(fmt.Sprintf(`,%s]`, json_)), leng-1)
 	}
 	return err
+}
+
+func ExportJsonFile[T any](filename string, data T) error {
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	b, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+
+	b, err = _UnescapeUnicodeCharactersInJSON(b)
+	var out bytes.Buffer
+	err = json.Indent(&out, b, "", strings.Repeat(" ", 2))
+	if err != nil {
+		return err
+	}
+
+	_, err = f.Write(out.Bytes())
+
+	return nil
+
 }
 
 func ReadJsonFile[T any](filename string) (T, error) {

@@ -20,18 +20,21 @@ func makeExecutionData(filename string) error {
 		return errors.New("Exection data file exists")
 	}
 
-	ini := Log{
-		Time:    time.Now(),
-		Message: "initialize",
-		// UserId:  userid,
+	ini := []Log{
+		{
+			Time:    time.Now(),
+			Message: "initialize",
+			// UserId:  userid,
+
+		},
 	}
 
-	err := utils.WriteJsonFile(filename, ini)
+	err := utils.ExportJsonFile(filename, ini)
 	return err
 
 }
 
-func updateExecutionData(filename, message, user_id string) error {
+func updateExecutionData(filename, message, user_id string, log_time time.Time) error {
 	if !utils.Exists(filename) {
 		return errors.New("Execution data file does not exists")
 	}
@@ -40,22 +43,38 @@ func updateExecutionData(filename, message, user_id string) error {
 		return errors.New("Message to execution data is null")
 	}
 
-	if user_id == "" {
-		return errors.New("User ID on  execution data is null")
-	}
+	last, err := utils.ReadJsonFile[[]Log](filename)
 
 	log := Log{
-		Time:    time.Now(),
+		Time:    log_time,
 		Message: message,
 		UserId:  user_id,
 	}
 
-	err := utils.WriteJsonFile(filename, log)
+	last = append(last, log)
+
+	err = utils.ExportJsonFile(filename, last)
 	return err
 
 }
 
-func findLastExecutionResult(logs []Log, user_id string) Log {
+func getLastExecutionResultsMap(logs []Log) Log {
+	// sort.Slice(logs, func(i, j int) bool { return logs[i].Time.After(logs[j].Time) }) //Decending
+
+	var last_exe_time time.Time
+	var result *Log
+	for _, log := range logs {
+		if log.Time.After(last_exe_time) {
+			last_exe_time = log.Time
+			result = &log
+		}
+	}
+
+	return *result
+
+}
+
+func findLastExecutionResultByUserId(logs []Log, user_id string) Log {
 	sort.Slice(logs, func(i, j int) bool { return logs[i].Time.After(logs[j].Time) }) //Decending
 
 	for _, log := range logs {

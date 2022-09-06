@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -358,14 +359,19 @@ func exportMetadataJsonFile(filename string, data Metadata) error {
 	}
 	defer f.Close()
 
-	enc := json.NewEncoder(f)
-	enc.SetIndent("", "  ")
-	enc.SetEscapeHTML(false)
-	err = enc.Encode(data)
-
+	b, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
+
+	b, err = utils.UnescapeUnicodeCharactersInJSON(b)
+	var out bytes.Buffer
+	err = json.Indent(&out, b, "", strings.Repeat(" ", 2))
+	if err != nil {
+		return err
+	}
+
+	_, err = f.Write(out.Bytes())
 
 	return nil
 

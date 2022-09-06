@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func WriteJsonFile(fileName string, object interface{}) error {
@@ -45,4 +47,12 @@ func ReadJsonFile[T any](filename string) (T, error) {
 	json.Unmarshal(raw, &data)
 	return data, nil
 
+}
+
+func _UnescapeUnicodeCharactersInJSON(_jsonRaw json.RawMessage) (json.RawMessage, error) {
+	str, err := strconv.Unquote(strings.Replace(strconv.Quote(string(_jsonRaw)), `\\u`, `\u`, -1))
+	if err != nil {
+		return nil, err
+	}
+	return []byte(str), nil
 }

@@ -359,6 +359,7 @@ func exportMetadataJsonFile(filename string, data Metadata) error {
 	defer f.Close()
 
 	enc := json.NewEncoder(f)
+	enc.SetIndent("", "  ")
 	enc.SetEscapeHTML(false)
 	err = enc.Encode(data)
 

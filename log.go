@@ -20,13 +20,16 @@ func makeExecutionData(filename string) error {
 		return errors.New("Exection data file exists")
 	}
 
-	ini := Log{
-		Time:    time.Now(),
-		Message: "initialize",
-		// UserId:  userid,
+	ini := []Log{
+		{
+			Time:    time.Now(),
+			Message: "initialize",
+			// UserId:  userid,
+
+		},
 	}
 
-	err := utils.WriteJsonFile(filename, ini)
+	err := utils.ExportJsonFile(filename, ini)
 	return err
 
 }
@@ -40,9 +43,7 @@ func updateExecutionData(filename, message, user_id string, log_time time.Time) 
 		return errors.New("Message to execution data is null")
 	}
 
-	// if user_id == "" {
-	// 	return errors.New("User ID on  execution data is null")
-	// }
+	last, err := utils.ReadJsonFile[[]Log](filename)
 
 	log := Log{
 		Time:    log_time,
@@ -50,7 +51,9 @@ func updateExecutionData(filename, message, user_id string, log_time time.Time) 
 		UserId:  user_id,
 	}
 
-	err := utils.WriteJsonFile(filename, log)
+	last = append(last, log)
+
+	err = utils.ExportJsonFile(filename, last)
 	return err
 
 }

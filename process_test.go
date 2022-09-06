@@ -48,7 +48,7 @@ func TestCreateNewSingleUserMetadata(t *testing.T) {
 
 	md := createSingleUserMetadataFromDB(client, user_db_id, contribution_db_id, test_user_id, ti)
 
-	err := ExportJsonFile(fmt.Sprintf("%s.json", test_user_id), md)
+	err := utils.ExportJsonFile(fmt.Sprintf("%s.json", test_user_id), md)
 	if err != nil {
 		t.Error("Faild for json output")
 	}

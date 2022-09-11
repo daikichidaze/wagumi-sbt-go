@@ -22,7 +22,7 @@
       {
         "name": "VC Meeting",
         "description": "WG 定例ミーティングの資料作成を行いました",
-        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021418Z&X-Amz-Expires=3600&X-Amz-Signature=0144f88939a040d0cc263971f3e2ccbf32023c28dd000cd403baf2868941616b&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T030159Z&X-Amz-Expires=3600&X-Amz-Signature=21f11fe57cf08989ab0975c02fa22031f71ac40838b47ea074ade58ace90aa31&X-Amz-SignedHeaders=host&x-id=GetObject",
         "external_url": "https://wagumi-dev.notion.site/3bb7aec7fc7143ca9d91743dcf1023fa",
         "properties": {
           "page_id": "3bb7aec7-fc71-43ca-9d91-743dcf1023fa",

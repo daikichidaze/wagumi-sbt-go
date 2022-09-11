@@ -1,37 +1,13 @@
 package utils
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
 )
-
-func WriteJsonFile(fileName string, object interface{}) error {
-	file, _ := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0600)
-	defer file.Close()
-	fi, _ := file.Stat()
-	leng := fi.Size()
-
-	by := make([]byte, leng)
-	file.Read(by)
-
-	json_, _ := json.Marshal(object)
-
-	var err error
-	if leng == 0 {
-		_, err = file.Write([]byte(fmt.Sprintf(`[%s]`, json_)))
-	} else if by[leng-1] == 0xa {
-		_, err = file.WriteAt([]byte(fmt.Sprintf(`,%s]`, json_)), leng-2)
-	} else {
-		_, err = file.WriteAt([]byte(fmt.Sprintf(`,%s]`, json_)), leng-1)
-	}
-	return err
-}
 
 func ExportJsonFile[T any](filename string, data T) error {
 	f, err := os.Create(filename)
@@ -40,21 +16,12 @@ func ExportJsonFile[T any](filename string, data T) error {
 	}
 	defer f.Close()
 
-	b, err := json.Marshal(data)
-	if err != nil {
-		return err
-	}
+	enc := json.NewEncoder(f)
+	enc.SetIndent("", "  ")
+	enc.SetEscapeHTML(false)
+	err = enc.Encode(data)
 
-	b, err = _UnescapeUnicodeCharactersInJSON(b)
-	var out bytes.Buffer
-	err = json.Indent(&out, b, "", strings.Repeat(" ", 2))
-	if err != nil {
-		return err
-	}
-
-	_, err = f.Write(out.Bytes())
-
-	return nil
+	return err
 
 }
 

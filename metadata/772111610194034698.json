@@ -1,0 +1,52 @@
+{
+  "name": "Manabazu",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/772111610194034698/7681be791a1c261a677c2c1178d11c1a.png",
+  "external_url": "https://wagumi-dev.notion.site/97ca39379ed84f97bc4999e9bf586975",
+  "properties": {
+    "contributions": [
+      {
+        "name": "TeamCommunity定例ミーティングに参加",
+        "description": "Team Communityの定例ミーティングに参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/98000c58bcdd435188ae1dc645858135",
+        "properties": {
+          "page_id": "98000c58-bcdd-4351-88ae-1dc645858135",
+          "reference": null,
+          "date": {
+            "start": "2022-07-08",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "IVS那覇報告会に参加",
+        "description": "IVS那覇報告会に参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/a533cbd0bff8495b83a153ba39ad32bc",
+        "properties": {
+          "page_id": "a533cbd0-bff8-495b-83a1-53ba39ad32bc",
+          "reference": null,
+          "date": {
+            "start": "2022-07-14",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "TeamCommunity定例ミーティングに参加",
+        "description": "Team Communityの定例ミーティングに参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/8b317a24dae1423683e112b8a9e14f44",
+        "properties": {
+          "page_id": "8b317a24-dae1-4236-83e1-12b8a9e14f44",
+          "reference": null,
+          "date": {
+            "start": "2022-07-15",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "Yusuket",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/779789414880510002/5bb1a249cad3c0145718cb7e0bc32a45.png",
+  "external_url": "https://wagumi-dev.notion.site/5e95ab55322046d6819295d3c7969c0e",
+  "properties": {
+    "contributions": [
+      {
+        "name": "WagumiDAO Adminとして活動",
+        "description": "Adminとして活動しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/bc6d94fadb5d408ab3dc9f4b3943326e",
+        "properties": {
+          "page_id": "bc6d94fa-db5d-408a-b3dc-9f4b3943326e",
+          "reference": null,
+          "date": {
+            "start": "2022-04-01",
+            "end": "2022-06-30"
+          }
+        }
+      },
+      {
+        "name": "IVS那覇に参加",
+        "description": "IVS那覇に参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/6a3f4864a09046838b3ea7d9c0bcb05b",
+        "properties": {
+          "page_id": "6a3f4864-a090-4683-8b3e-a7d9c0bcb05b",
+          "reference": null,
+          "date": {
+            "start": "2022-07-06",
+            "end": "2022-07-08"
+          }
+        }
+      },
+      {
+        "name": "News Letterを配信",
+        "description": "和組Canon - Issue #13を配信しました",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/f548d6a2ba46411ebf0a9aa8e918116a",
+        "properties": {
+          "page_id": "f548d6a2-ba46-411e-bf0a-9aa8e918116a",
+          "reference": null,
+          "date": {
+            "start": "2022-07-19",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "News Letterを配信",
+        "description": "和組Canon - Issue #14を配信しました",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/a58a2789ed7b446b8b13c40acd994422",
+        "properties": {
+          "page_id": "a58a2789-ed7b-446b-8b13-c40acd994422",
+          "reference": null,
+          "date": {
+            "start": "2022-08-10",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

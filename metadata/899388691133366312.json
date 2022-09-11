@@ -1,0 +1,38 @@
+{
+  "name": "なかじま　じょういち",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/899388691133366312/a336838616f54d54bc92a6a27095c6e0.png",
+  "external_url": "https://wagumi-dev.notion.site/000ecafb823a4994b15ee3f3b7f9ccaf",
+  "properties": {
+    "contributions": [
+      {
+        "name": "VC Meeting",
+        "description": "第4回定例ミーティングに参加しました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021451Z&X-Amz-Expires=3600&X-Amz-Signature=9de3aedd5c6b6b7d546bc85c1e482c9c326ecffc9fc4fdcebfe9835a1f95bb00&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/9eade0d7bdc04108b422ca5040f29098",
+        "properties": {
+          "page_id": "9eade0d7-bdc0-4108-b422-ca5040f29098",
+          "reference": null,
+          "date": {
+            "start": "2022-07-17",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "web3起業勉強会に参加",
+        "description": "起業に役立つスタートアップ・スクール",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f7c91981-00ae-4c13-93cb-f02ef4ba4cb1/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021411Z&X-Amz-Expires=3600&X-Amz-Signature=b628d52e79586fe01ebc339ec09089c62d6831c474ef03762337986f1a3ce7d5&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/4351a53a7945475fb874eff96781f832",
+        "properties": {
+          "page_id": "4351a53a-7945-475f-b874-eff96781f832",
+          "reference": null,
+          "date": {
+            "start": "2022-07-26",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

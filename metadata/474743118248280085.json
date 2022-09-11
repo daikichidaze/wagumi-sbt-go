@@ -1,0 +1,164 @@
+{
+  "name": "noborun",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/474743118248280085/16fc24387667eb139dd37b131da0fcaf.png",
+  "external_url": "https://wagumi-dev.notion.site/abb17cb784ce4761b9e2c1d1475194f4",
+  "properties": {
+    "contributions": [
+      {
+        "name": "IVS那覇に参加",
+        "description": "IVS那覇に参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/6a3f4864a09046838b3ea7d9c0bcb05b",
+        "properties": {
+          "page_id": "6a3f4864-a090-4683-8b3e-a7d9c0bcb05b",
+          "reference": null,
+          "date": {
+            "start": "2022-07-06",
+            "end": "2022-07-08"
+          }
+        }
+      },
+      {
+        "name": "IVS那覇報告会に参加",
+        "description": "IVS那覇報告会に参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/a533cbd0bff8495b83a153ba39ad32bc",
+        "properties": {
+          "page_id": "a533cbd0-bff8-495b-83a1-53ba39ad32bc",
+          "reference": null,
+          "date": {
+            "start": "2022-07-14",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "AMAモデレーターを務めました",
+        "description": "「Fracton Ventures創業者に聞く、今後のWeb3トレンドと注目している領域」のモデレーターをつとめました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/19ccad78604e4fa387c65de4c102e0e0",
+        "properties": {
+          "page_id": "19ccad78-604e-4fa3-87c6-5de4c102e0e0",
+          "reference": null,
+          "date": {
+            "start": "2022-07-16",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "企画Team 初回Kick Off Meeting",
+        "description": "作業イメージの共有などを行いました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021415Z&X-Amz-Expires=3600&X-Amz-Signature=f66afde7e28e16202d9d8f47c8334ee9a928676443ea461f507b0c9537d5bbd0&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/54fea107eb48486999220721913fde6a",
+        "properties": {
+          "page_id": "54fea107-eb48-4869-9922-0721913fde6a",
+          "reference": null,
+          "date": {
+            "start": "2022-07-21",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "VC Meeting",
+        "description": "第5回定例ミーティングに参加しました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021435Z&X-Amz-Expires=3600&X-Amz-Signature=632a4f5e20f0fde5468fa6481004335f874f2b12d567752363ab34e057516862&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/f072663526ff4bd5ac94388247f6f305",
+        "properties": {
+          "page_id": "f0726635-26ff-4bd5-ac94-388247f6f305",
+          "reference": null,
+          "date": {
+            "start": "2022-07-24",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "VC Meeting",
+        "description": "企画Teamのミーティングに参加しました",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021412Z&X-Amz-Expires=3600&X-Amz-Signature=a061ecf38d3b962782c0e1219ff62915608328fa2207cd5a511fd6e33b410b5c&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/0c7f1839195d4106ad88bfafba4467d3",
+        "properties": {
+          "page_id": "0c7f1839-195d-4106-ad88-bfafba4467d3",
+          "reference": null,
+          "date": {
+            "start": "2022-07-28",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "VC Meeting",
+        "description": "第６回定例ミーティングに参加しました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021433Z&X-Amz-Expires=3600&X-Amz-Signature=669f6b3d95b0c4cbc50e5c03e294df9885c9aeeedb303abf22acb5c932890ab4&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/a4aeae0388ef4ada8e9da0612ce791bb",
+        "properties": {
+          "page_id": "a4aeae03-88ef-4ada-8e9d-a0612ce791bb",
+          "reference": null,
+          "date": {
+            "start": "2022-07-31",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "web3起業勉強会に参加",
+        "description": "web3起業に特徴的な知識・ノウハウ/共同創業者の価値",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6fe7fb9d-f882-4da3-b2b6-d9d8be3a26c6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021438Z&X-Amz-Expires=3600&X-Amz-Signature=80b246aff0353c40997c7cbaf89fb5449ec9b028b0804dd2f230170f51010cbb&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/71f7ea292b99454f9e6ab52ad0b3e3fd",
+        "properties": {
+          "page_id": "71f7ea29-2b99-454f-9e6a-b52ad0b3e3fd",
+          "reference": null,
+          "date": {
+            "start": "2022-08-02",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "VC Meeting",
+        "description": "第７回定例ミーティングに参加しました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021428Z&X-Amz-Expires=3600&X-Amz-Signature=4657dae21f86b74fcf9c5980d4f95bae4e3e9d9f08335369e5dd35ba6b094b50&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/ad2c2f9839834239a277e0a283bc92b6",
+        "properties": {
+          "page_id": "ad2c2f98-3983-4239-a277-e0a283bc92b6",
+          "reference": null,
+          "date": {
+            "start": "2022-08-07",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "VC Meeting",
+        "description": "第８回定例ミーティングに参加しました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021445Z&X-Amz-Expires=3600&X-Amz-Signature=da7035b35dc733482e61b90917542b1e35645c953a264238243bdd476c9ddffe&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/5982d44ed854419bbb1a069bdbc64218",
+        "properties": {
+          "page_id": "5982d44e-d854-419b-bb1a-069bdbc64218",
+          "reference": null,
+          "date": {
+            "start": "2022-08-14",
+            "end": ""
+          }
+        }
+      },
+      {
+        "name": "VC Meeting",
+        "description": "第９回定例ミーティングに参加しました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021500Z&X-Amz-Expires=3600&X-Amz-Signature=cb6c3263d9318a657250519b3f55e1745e61ccb68d2d834e91e9d4c018ebacfb&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/8629983adc0b4728b89133b2ef38bbb9",
+        "properties": {
+          "page_id": "8629983a-dc0b-4728-b891-33b2ef38bbb9",
+          "reference": null,
+          "date": {
+            "start": "2022-08-21",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

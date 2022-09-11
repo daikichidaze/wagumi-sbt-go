@@ -1,0 +1,24 @@
+{
+  "name": "Asuka",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/739072715893243936/9782407132de6d9d022317d67e2d6909.png",
+  "external_url": "https://wagumi-dev.notion.site/d4ee04e3f11a472082e3378da97882aa",
+  "properties": {
+    "contributions": [
+      {
+        "name": "web3起業勉強会に参加",
+        "description": "起業に役立つスタートアップ・スクール",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f7c91981-00ae-4c13-93cb-f02ef4ba4cb1/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021411Z&X-Amz-Expires=3600&X-Amz-Signature=b628d52e79586fe01ebc339ec09089c62d6831c474ef03762337986f1a3ce7d5&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/4351a53a7945475fb874eff96781f832",
+        "properties": {
+          "page_id": "4351a53a-7945-475f-b874-eff96781f832",
+          "reference": null,
+          "date": {
+            "start": "2022-07-26",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

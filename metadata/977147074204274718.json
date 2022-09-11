@@ -1,0 +1,24 @@
+{
+  "name": "kjm",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://discord.com/assets/f9bb9c4af2b9c32a2c5ee0014661546d.png",
+  "external_url": "https://wagumi-dev.notion.site/b816c226b8a34a009c44710a7dae6a31",
+  "properties": {
+    "contributions": [
+      {
+        "name": "web3起業勉強会に参加",
+        "description": "web3起業に特徴的な知識・ノウハウ/共同創業者の価値",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6fe7fb9d-f882-4da3-b2b6-d9d8be3a26c6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021438Z&X-Amz-Expires=3600&X-Amz-Signature=80b246aff0353c40997c7cbaf89fb5449ec9b028b0804dd2f230170f51010cbb&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/71f7ea292b99454f9e6ab52ad0b3e3fd",
+        "properties": {
+          "page_id": "71f7ea29-2b99-454f-9e6a-b52ad0b3e3fd",
+          "reference": null,
+          "date": {
+            "start": "2022-08-02",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Tamakichi",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/688222038611329060/f48f71efaa3ab1428e2e9c9729d6609b.png",
+  "external_url": "https://wagumi-dev.notion.site/79c5b65d2a644c2ca891ca08119e895e",
+  "properties": {
+    "contributions": [
+      {
+        "name": "VC Meeting",
+        "description": "第７回定例ミーティングに参加しました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021428Z&X-Amz-Expires=3600&X-Amz-Signature=4657dae21f86b74fcf9c5980d4f95bae4e3e9d9f08335369e5dd35ba6b094b50&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/ad2c2f9839834239a277e0a283bc92b6",
+        "properties": {
+          "page_id": "ad2c2f98-3983-4239-a277-e0a283bc92b6",
+          "reference": null,
+          "date": {
+            "start": "2022-08-07",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

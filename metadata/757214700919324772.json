@@ -1,0 +1,24 @@
+{
+  "name": "とにー",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/757214700919324772/99e9f6e58cb85a2827c09a8bf96ee2af.png",
+  "external_url": "https://wagumi-dev.notion.site/623a1ee061ae4b8084c970360dbe9454",
+  "properties": {
+    "contributions": [
+      {
+        "name": "IVS那覇報告会に参加",
+        "description": "IVS那覇報告会に参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/a533cbd0bff8495b83a153ba39ad32bc",
+        "properties": {
+          "page_id": "a533cbd0-bff8-495b-83a1-53ba39ad32bc",
+          "reference": null,
+          "date": {
+            "start": "2022-07-14",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "kunisaki",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/667736363294130207/cb8a3a3f245a9c8a75b18c76e878cfbc.png",
+  "external_url": "https://wagumi-dev.notion.site/4f839d8e4bd14beeb34c041054f217b9",
+  "properties": {
+    "contributions": [
+      {
+        "name": "IVS那覇報告会に参加",
+        "description": "IVS那覇報告会に参加しました。",
+        "image": "",
+        "external_url": "https://wagumi-dev.notion.site/a533cbd0bff8495b83a153ba39ad32bc",
+        "properties": {
+          "page_id": "a533cbd0-bff8-495b-83a1-53ba39ad32bc",
+          "reference": null,
+          "date": {
+            "start": "2022-07-14",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"time"
@@ -114,6 +115,10 @@ func loadEnv(file_path string) {
 
 func processMetadata(client *notion.Client,
 	user_db_id string, contribution_db_id string, last_exe_log Log) error {
+
+	if !utils.Exists(metadata_directory) {
+		return errors.New(fmt.Sprintf("Directory: \"%s\" does not exists. Please create the directory for metadata.", metadata_directory))
+	}
 
 	ctx := context.Background()
 	pq := &notion.PaginationQuery{}

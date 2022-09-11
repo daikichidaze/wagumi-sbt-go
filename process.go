@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"path/filepath"
 	"sort"
 	"strings"
 	"time"
@@ -121,6 +122,8 @@ func createContribution(client *notion.Client,
 func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_name string) (string, error) {
 	var message string
 
+	matadata_path := filepath.Join(metadata_directory, metadata_file_name)
+
 	// Only update the metadata when there are new contribusion data
 	if len(metadata.Properties.Contribusions) == 0 {
 		// case of no new contributions
@@ -130,9 +133,9 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 
 	}
 
-	if utils.Exists(metadata_file_name) {
+	if utils.Exists(matadata_path) {
 		// Add previous contribution data
-		last_metadata, err := utils.ReadJsonFile[Metadata](metadata_file_name)
+		last_metadata, err := utils.ReadJsonFile[Metadata](matadata_path)
 		if err != nil {
 			return "", err
 		}
@@ -156,7 +159,7 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 		})
 
 	// export metadata json
-	err := utils.ExportJsonFile(metadata_file_name, metadata)
+	err := utils.ExportJsonFile(matadata_path, metadata)
 	if err != nil {
 		return "", err
 	}

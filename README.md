@@ -10,10 +10,22 @@ Go 1.19.0
 
 下記コンパイルに対応。Apple silicon 端末への対応は今後検討。
 
-### Linux amd64 / Intel Mac
+### Linux amd64
 
 ```
-make linux
+make linux-amd64
+```
+
+### Mac Intel
+
+```
+make mac-amd64
+```
+
+### Mac Apple silicon (未検証)
+
+```
+make mac-arm64
 ```
 
 ### Windows 64bit

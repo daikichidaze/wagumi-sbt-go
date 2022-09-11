@@ -15,6 +15,7 @@ import (
 
 var env_file = ".env"
 var log_file_name = "executionData.json"
+var metadata_directory = "metadata"
 var api_key string
 var page_contribution_map map[string]Contribution
 

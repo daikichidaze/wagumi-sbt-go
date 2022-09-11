@@ -22,7 +22,8 @@ __debug_bin
 .vscode/
 
 # output files
-# **.json
+**.json
 
 # binary file
 wagumi-sbt-go
+bin/

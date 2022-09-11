@@ -8,7 +8,7 @@
       {
         "name": "WG-TOKEN に参加",
         "description": "地獄のような作業をおこなってくれました。",
-        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021454Z&X-Amz-Expires=3600&X-Amz-Signature=bca4f6635c95c0addfdaad116a6bb40d6515cc623f7b82ea9d8edc67383670d0&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T030236Z&X-Amz-Expires=3600&X-Amz-Signature=0ea72d47be74e4d9e303e042d0f5ea871d675be4e1e7488372cd8d5575d44091&X-Amz-SignedHeaders=host&x-id=GetObject",
         "external_url": "https://wagumi-dev.notion.site/1f091f56aa4a4d5584988d28a3e63938",
         "properties": {
           "page_id": "1f091f56-aa4a-4d55-8498-8d28a3e63938",
@@ -22,7 +22,7 @@
       {
         "name": "VC Meeting",
         "description": "第６回定例ミーティングに参加しました。",
-        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T021433Z&X-Amz-Expires=3600&X-Amz-Signature=669f6b3d95b0c4cbc50e5c03e294df9885c9aeeedb303abf22acb5c932890ab4&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220911%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220911T030213Z&X-Amz-Expires=3600&X-Amz-Signature=3ac42564cad2ba7db47e67a7cc8b0a99b7abfec98ad5d46fb8f13e8d77771a63&X-Amz-SignedHeaders=host&x-id=GetObject",
         "external_url": "https://wagumi-dev.notion.site/a4aeae0388ef4ada8e9da0612ce791bb",
         "properties": {
           "page_id": "a4aeae03-88ef-4ada-8e9d-a0612ce791bb",

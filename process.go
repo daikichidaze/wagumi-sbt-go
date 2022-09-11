@@ -79,6 +79,7 @@ func createContribution(client *notion.Client,
 
 	resp_tmp, err := client.FindPagePropertyByID(ctx, page_id, "name", pagination)
 	utils.Check(err)
+  fmt.Println(resp_tmp.Results[0].Title.PlainText)
 	name := resp_tmp.Results[0].Title.PlainText
 
 	prop, err := directCallNotionPageProperties(page_id, map_prop_id["image"])

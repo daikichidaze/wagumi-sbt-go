@@ -51,7 +51,6 @@ func createSingleUserMetadataFromMap(client *notion.Client,
 	name := resp_tmp2.Results[0].Title.PlainText
 
 	image := user_page.Icon.External.URL
-	fmt.Println(image)
 
 	cntb := make([]Contribution, 0)
 	for _, pageid := range pageIds {

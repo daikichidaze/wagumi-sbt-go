@@ -17,17 +17,21 @@ type MetadetaProperty struct {
 }
 
 type Contribution struct {
-	PageId    	string   			 `json:"id"`
 	Name        string               `json:"name"`
 	Description string               `json:"description"`
 	Image       string               `json:"image"`
 	ExternalUrl string               `json:"external_url"`
-	Date      	Date     			 `json:"date"`
+	Properties  ContributionProperty `json:"properties"`
 	users       []string
+}
+
+type ContributionProperty struct {
+	PageId    string   `json:"page_id"`
+	Reference []string `json:"reference"`
+	Date      Date     `json:"date"`
 }
 
 type Date struct {
 	Start string `json:"start"`
 	End   interface{} `json:"end"`
-	// TimeZone interface{} `json:"time_zone"`
 }

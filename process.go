@@ -51,6 +51,7 @@ func createSingleUserMetadataFromMap(client *notion.Client,
 	name := resp_tmp2.Results[0].Title.PlainText
 
 	image := user_page.Icon.External.URL
+	fmt.Println(image)
 
 	cntb := make([]Contribution, 0)
 	for _, pageid := range pageIds {
@@ -91,7 +92,7 @@ func createContribution(client *notion.Client,
 	utils.Check(err)
 	start := prop.Date.Start
 	end := prop.Date.End
-
+	//endが存在していた場合、文字列として認識してそうでない場合nullを返したい
 
 	resp_users, err := client.FindPagePropertyByID(ctx, page.ID, map_prop_id["userId"], pagination)
 	utils.Check(err)
@@ -102,14 +103,16 @@ func createContribution(client *notion.Client,
 	}
 
 	return Contribution{
-		PageId: 	 page_id,
 		Name:        name,
 		Description: description,
 		Image:       image,
 		ExternalUrl: external_url,
-		Date: Date{
-			Start: start,
-			End:   end,
+		Properties: ContributionProperty{
+			PageId: page_id,
+			Date: Date{
+				Start: start,
+				End:   end,
+			},
 		},
 		users: users,
 	}
@@ -125,6 +128,7 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 	if len(metadata.Properties.Contribusions) == 0 {
 		// case of no new contributions
 		message = fmt.Sprintf("no updates in %s", metadata_file_name)
+		fmt.Println(message)
 		return message, nil
 
 	}
@@ -138,7 +142,7 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 
 		// TODO delete duplicates
 		for _, previous_contribution := range last_metadata.Properties.Contribusions {
-			if _, ok := page_contribution_map[previous_contribution.PageId]; !ok {
+			if _, ok := page_contribution_map[previous_contribution.Properties.PageId]; !ok {
 				metadata.Properties.Contribusions = append(metadata.Properties.Contribusions, previous_contribution)
 			}
 		}
@@ -151,7 +155,7 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 
 	sort.Slice(metadata.Properties.Contribusions,
 		func(i, j int) bool {
-			return metadata.Properties.Contribusions[i].Date.Start < metadata.Properties.Contribusions[j].Date.Start
+			return metadata.Properties.Contribusions[i].Properties.Date.Start < metadata.Properties.Contribusions[j].Properties.Date.Start
 		})
 
 	// export metadata json
@@ -159,6 +163,7 @@ func postProcessingMetadata(metadata Metadata, last_exe_log Log, metadata_file_n
 	if err != nil {
 		return "", err
 	}
+	fmt.Println(metadata_file_name + " updated")
 
 	return message, nil
 
@@ -258,24 +263,19 @@ func getSingleUserContributionDataFromDB(client *notion.Client, db_id string, us
 			utils.Check(err)
 			start := prop.Date.Start
 			end := prop.Date.End
-			//TODO endが入力されたら、文字列として認識したい
-			// if len(end) != 0 {
-			// 	end = end.(string)
-			// }
-			// timeZone := prop.Date.Timezone
-
 
 			contribusions = append(contribusions,
 				Contribution{
-					PageId: 	 page_id,
 					Name:        name,
 					Description: description,
 					Image:       image,
 					ExternalUrl: external_url,
-					Date: Date{
-						Start:    start,
-						End:   	  end,
-						// TimeZone: timeZone,
+					Properties: ContributionProperty{
+						PageId: page_id,
+						Date: Date{
+							Start: start,
+							End:   end,
+						},
 					},
 				})
 		}

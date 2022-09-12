@@ -50,9 +50,8 @@ func createSingleUserMetadataFromMap(client *notion.Client,
 	utils.Check(err)
 	name := resp_tmp2.Results[0].Title.PlainText
 
-  prop, err := directCallNotionPageProperties(page_id, map_prop_id["icon"])
-  utils.Check(err)
-	image := prop.Files[0].Name
+	image := user_page.Icon.External.URL
+	fmt.Println(image)
 
 	cntb := make([]Contribution, 0)
 	for _, pageid := range pageIds {
@@ -79,7 +78,6 @@ func createContribution(client *notion.Client,
 
 	resp_tmp, err := client.FindPagePropertyByID(ctx, page_id, "name", pagination)
 	utils.Check(err)
-  fmt.Println(resp_tmp.Results[0].Title.PlainText)
 	name := resp_tmp.Results[0].Title.PlainText
 
 	prop, err := directCallNotionPageProperties(page_id, map_prop_id["image"])
@@ -94,6 +92,7 @@ func createContribution(client *notion.Client,
 	utils.Check(err)
 	start := prop.Date.Start
 	end := prop.Date.End
+
 
 	resp_users, err := client.FindPagePropertyByID(ctx, page.ID, map_prop_id["userId"], pagination)
 	utils.Check(err)

@@ -138,7 +138,7 @@ func processMetadata(client *notion.Client,
 		Sorts: []notion.DatabaseQuerySort{
 			{
 				Property:  "date",
-				Direction: notion.SortDirAsc,
+				Direction: notion.SortDirDesc,
 			},
 		},
 	}

@@ -50,8 +50,8 @@ func createSingleUserMetadataFromMap(client *notion.Client,
 	utils.Check(err)
 	name := resp_tmp2.Results[0].Title.PlainText
 
-	prop, err := directCallNotionPageProperties(page_id, map_prop_id["icon"])
-	utils.Check(err)
+  prop, err := directCallNotionPageProperties(page_id, map_prop_id["icon"])
+  utils.Check(err)
 	image := prop.Files[0].Name
 
 	cntb := make([]Contribution, 0)

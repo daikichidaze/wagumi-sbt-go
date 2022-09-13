@@ -81,11 +81,19 @@ func createContribution(client *notion.Client,
 
 	prop, err := directCallNotionPageProperties(page_id, map_prop_id["image"])
 	utils.Check(err)
-	image := prop.Files[0].File.Url
+	var image string
+	if prop.Files[0].Type == "file" {
+		image = prop.Files[0].File.Url
+	} else {
+		image = prop.Files[0].External.Url
+	}
+
 
 	prop, err = directCallNotionPageProperties(page_id, map_prop_id["description"])
 	utils.Check(err)
 	description := prop.Results[0].RichText.PlainText
+
+	reference := make([]string, 0)
 
 	prop, err = directCallNotionPageProperties(page_id, map_prop_id["date"])
 	utils.Check(err)
@@ -108,6 +116,7 @@ func createContribution(client *notion.Client,
 		ExternalUrl: external_url,
 		Properties: ContributionProperty{
 			PageId: page_id,
+			Reference: reference,
 			Date: Date{
 				Start: start,
 				End:   end,

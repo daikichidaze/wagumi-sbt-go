@@ -27,3 +27,6 @@ __debug_bin
 # binary file
 wagumi-sbt-go
 bin/
+
+# DS_Store
+.DS_Store 

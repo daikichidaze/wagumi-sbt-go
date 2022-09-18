@@ -35,7 +35,8 @@ type ContributionProperty struct {
 
 type Date struct {
 	Start string  `json:"start"`
-	End   DateEnd `json:"end"`
+	End   DateEnd `json:"end"` //endが存在していた場合、文字列として認識してそうでない場合nullを返したい
+
 }
 
 type DateEnd string

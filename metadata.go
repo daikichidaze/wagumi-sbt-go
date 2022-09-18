@@ -1,7 +1,5 @@
 package main
 
-import "bytes"
-
 type Metadata struct {
 	Name         string           `json:"name"`
 	Description  string           `json:"description"`
@@ -34,33 +32,7 @@ type ContributionProperty struct {
 }
 
 type Date struct {
-	Start string  `json:"start"`
-	End   DateEnd `json:"end"` //endが存在していた場合、文字列として認識してそうでない場合nullを返したい
+	Start string `json:"start"`
+	End   string `json:"end"` //endがnullの場合は空文字を出力する
 
-}
-
-type DateEnd string
-
-func (c DateEnd) MarshalJSON() ([]byte, error) {
-	var buf bytes.Buffer
-	if len(string(c)) == 0 {
-		buf.WriteString(`null`)
-	} else {
-		buf.WriteString(`"` + string(c) + `"`) // add double quation mark as json format required
-	}
-	return buf.Bytes(), nil
-}
-
-func (c *DateEnd) UnmarshalJSON(in []byte) error {
-	str := string(in)
-	if str == `null` {
-		*c = ""
-		return nil
-	}
-	res := DateEnd(str)
-	if len(res) >= 2 {
-		res = res[1 : len(res)-1] // remove the wrapped qutation
-	}
-	*c = res
-	return nil
 }

@@ -50,9 +50,7 @@ func createSingleUserMetadataFromMap(client *notion.Client,
 	utils.Check(err)
 	name := resp_tmp2.Results[0].Title.PlainText
 
-	prop, err := directCallNotionPageProperties(page_id, map_prop_id["icon"])
-	utils.Check(err)
-	image := prop.Files[0].Name
+	image := user_page.Icon.External.URL
 
 	cntb := make([]Contribution, 0)
 	for _, pageid := range pageIds {
@@ -83,16 +81,25 @@ func createContribution(client *notion.Client,
 
 	prop, err := directCallNotionPageProperties(page_id, map_prop_id["image"])
 	utils.Check(err)
-	image := prop.Files[0].File.Url
+	var image string
+	if prop.Files[0].Type == "file" {
+		image = prop.Files[0].File.Url
+	} else {
+		image = prop.Files[0].External.Url
+	}
+
 
 	prop, err = directCallNotionPageProperties(page_id, map_prop_id["description"])
 	utils.Check(err)
 	description := prop.Results[0].RichText.PlainText
 
+	reference := make([]string, 0)
+
 	prop, err = directCallNotionPageProperties(page_id, map_prop_id["date"])
 	utils.Check(err)
 	start := prop.Date.Start
 	end := prop.Date.End
+	//endが存在していた場合、文字列として認識してそうでない場合nullを返したい
 
 	resp_users, err := client.FindPagePropertyByID(ctx, page.ID, map_prop_id["userId"], pagination)
 	utils.Check(err)
@@ -109,6 +116,7 @@ func createContribution(client *notion.Client,
 		ExternalUrl: external_url,
 		Properties: ContributionProperty{
 			PageId: page_id,
+			Reference: reference,
 			Date: Date{
 				Start: start,
 				End:   end,

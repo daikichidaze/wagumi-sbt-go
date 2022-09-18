@@ -1,0 +1,40 @@
+{
+  "name": "muarata",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/450293970493505536/56367271d7bfece862242cc3a2f6e281.png",
+  "external_url": "https://wagumi-dev.notion.site/f64dc2374ee44385aee9f550fac827df",
+  "properties": {
+    "sns": {},
+    "tokens": [],
+    "contributions": [
+      {
+        "name": "5000人記念イベント 開催に尽力",
+        "description": "がんばりました。",
+        "image": "https://cdn.discordapp.com/attachments/914988919362293760/970922588064841778/unknown.png",
+        "external_url": "https://wagumi-dev.notion.site/39399cf87cc64635986b920db846e250",
+        "properties": {
+          "page_id": "39399cf8-7cc6-4635-986b-920db846e250",
+          "reference": [],
+          "date": {
+            "start": "2022-04-01",
+            "end": "2022-04-30"
+          }
+        }
+      },
+      {
+        "name": "TeamCommunity定例ミーティングに参加",
+        "description": "Team Communityの定例ミーティングに参加しました。",
+        "image": "https://pbs.twimg.com/profile_images/1465762338871644162/nYSe4c4G_400x400.jpg",
+        "external_url": "https://wagumi-dev.notion.site/8b317a24dae1423683e112b8a9e14f44",
+        "properties": {
+          "page_id": "8b317a24-dae1-4236-83e1-12b8a9e14f44",
+          "reference": [],
+          "date": {
+            "start": "2022-07-15",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

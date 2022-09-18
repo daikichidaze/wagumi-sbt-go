@@ -1,0 +1,40 @@
+{
+  "name": "riho",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/489624124780576785/834f272781c2737ec26fb6f133297d59.png",
+  "external_url": "https://wagumi-dev.notion.site/9aba75cea6da49978a2409f6acd35288",
+  "properties": {
+    "sns": {},
+    "tokens": [],
+    "contributions": [
+      {
+        "name": "Wagumi Cats メタデータ移行作業",
+        "description": "Wagumi Catsの画像ファイルおよびメタデータの運用環境を変更する作業を行いました。",
+        "image": "https://cdn.discordapp.com/attachments/994575868007555112/994575890136711178/unknown.png",
+        "external_url": "https://wagumi-dev.notion.site/2ac95afe1907493ab6ab17f554d5abeb",
+        "properties": {
+          "page_id": "2ac95afe-1907-493a-b6ab-17f554d5abeb",
+          "reference": [],
+          "date": {
+            "start": "2022-05-09",
+            "end": "2022-07-03"
+          }
+        }
+      },
+      {
+        "name": "WG-TOKEN に参加",
+        "description": "地獄のような作業をおこなってくれました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220918%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220918T043601Z&X-Amz-Expires=3600&X-Amz-Signature=5127268c4f5200f353867f01667a620b1f6508c7d68e58b8a276f489744c842c&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/1f091f56aa4a4d5584988d28a3e63938",
+        "properties": {
+          "page_id": "1f091f56-aa4a-4d55-8498-8d28a3e63938",
+          "reference": [],
+          "date": {
+            "start": "2022-07-01",
+            "end": "2022-09-30"
+          }
+        }
+      }
+    ]
+  }
+}

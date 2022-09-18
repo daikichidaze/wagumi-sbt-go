@@ -1,0 +1,26 @@
+{
+  "name": "George",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/guilds/914960638365810748/users/700246962016092160/avatars/718f0a5ec23924e367d19cfc1c45912e.png",
+  "external_url": "https://wagumi-dev.notion.site/d45782bc0f4642d9b744e1fa714c6897",
+  "properties": {
+    "sns": {},
+    "tokens": [],
+    "contributions": [
+      {
+        "name": "5000人記念イベント 開催に尽力",
+        "description": "がんばりました。",
+        "image": "https://cdn.discordapp.com/attachments/914988919362293760/970922588064841778/unknown.png",
+        "external_url": "https://wagumi-dev.notion.site/39399cf87cc64635986b920db846e250",
+        "properties": {
+          "page_id": "39399cf8-7cc6-4635-986b-920db846e250",
+          "reference": [],
+          "date": {
+            "start": "2022-04-01",
+            "end": "2022-04-30"
+          }
+        }
+      }
+    ]
+  }
+}

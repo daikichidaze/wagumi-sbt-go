@@ -1,0 +1,26 @@
+{
+  "name": "kiyo",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/125422627715022848/6105b9813ca912dd4905018a8f878334.png",
+  "external_url": "https://wagumi-dev.notion.site/5b99da260b924e7098e13d1bb796c728",
+  "properties": {
+    "sns": {},
+    "tokens": [],
+    "contributions": [
+      {
+        "name": "IVS那覇で登壇",
+        "description": "IVS那覇でセッションに登壇しました。",
+        "image": "https://media.discordapp.net/attachments/981208746103537744/994869469476298823/IMG_0444.jpg?width=331&height=442",
+        "external_url": "https://wagumi-dev.notion.site/1e888fc9587141ab9b224b9fb8906e70",
+        "properties": {
+          "page_id": "1e888fc9-5871-41ab-9b22-4b9fb8906e70",
+          "reference": [],
+          "date": {
+            "start": "2022-07-08",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

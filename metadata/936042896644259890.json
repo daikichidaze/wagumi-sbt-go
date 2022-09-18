@@ -1,0 +1,26 @@
+{
+  "name": "masaru",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/936042896644259890/d9529e3d075ac83fe56b45ce790f960f.png",
+  "external_url": "https://wagumi-dev.notion.site/54d9dbc721f3455db608fceece272f5d",
+  "properties": {
+    "sns": {},
+    "tokens": [],
+    "contributions": [
+      {
+        "name": "IVS那覇報告会に参加",
+        "description": "IVS那覇報告会に参加しました。",
+        "image": "https://www.ivs.events/wp-content/uploads/2022/05/ivs-mv-2-1536x864.jpg",
+        "external_url": "https://wagumi-dev.notion.site/a533cbd0bff8495b83a153ba39ad32bc",
+        "properties": {
+          "page_id": "a533cbd0-bff8-495b-83a1-53ba39ad32bc",
+          "reference": [],
+          "date": {
+            "start": "2022-07-14",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

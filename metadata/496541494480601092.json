@@ -1,0 +1,26 @@
+{
+  "name": "Takuya Kitagawa",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/496541494480601092/23ed161142cbd9fe2a5d87715d874d0c.png",
+  "external_url": "https://wagumi-dev.notion.site/cbedf973cc644bbd98117eed3ee0bb88",
+  "properties": {
+    "sns": {},
+    "tokens": [],
+    "contributions": [
+      {
+        "name": "WG-TOKEN に参加",
+        "description": "地獄のような作業をおこなってくれました。",
+        "image": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4d09e9cc-0595-4e3b-bcff-66fd69dfe467/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220918%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220918T043601Z&X-Amz-Expires=3600&X-Amz-Signature=5127268c4f5200f353867f01667a620b1f6508c7d68e58b8a276f489744c842c&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "external_url": "https://wagumi-dev.notion.site/1f091f56aa4a4d5584988d28a3e63938",
+        "properties": {
+          "page_id": "1f091f56-aa4a-4d55-8498-8d28a3e63938",
+          "reference": [],
+          "date": {
+            "start": "2022-07-01",
+            "end": "2022-09-30"
+          }
+        }
+      }
+    ]
+  }
+}

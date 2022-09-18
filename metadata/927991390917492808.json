@@ -1,0 +1,26 @@
+{
+  "name": "CieloChiara",
+  "description": "He/She is one of wagumi members.",
+  "image": "https://cdn.discordapp.com/avatars/927991390917492808/de3afb56a93f4bddf34974113c74f910.png",
+  "external_url": "https://wagumi-dev.notion.site/e58de9961d2942518ca502dd793aa0db",
+  "properties": {
+    "sns": {},
+    "tokens": [],
+    "contributions": [
+      {
+        "name": "Meeting",
+        "description": "WGに絡んだ意識の共有を行いました",
+        "image": "https://pbs.twimg.com/profile_images/1465762338871644162/nYSe4c4G_400x400.jpg",
+        "external_url": "https://wagumi-dev.notion.site/911e2352ff8c4eb7afdae41e4e4bc341",
+        "properties": {
+          "page_id": "911e2352-ff8c-4eb7-afda-e41e4e4bc341",
+          "reference": [],
+          "date": {
+            "start": "2022-08-02",
+            "end": ""
+          }
+        }
+      }
+    ]
+  }
+}

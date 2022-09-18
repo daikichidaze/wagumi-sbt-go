@@ -124,15 +124,27 @@ func processMetadata(client *notion.Client,
 	pq := &notion.PaginationQuery{}
 	execution_timestamp := time.Now()
 
+	var filter_timestamp time.Time
 	if last_exe_log.Message != "initialize" {
+		filter_timestamp = last_exe_log.Time
 	}
 
 	checkbox := func() *bool { b := true; return &b }()
 	query := &notion.DatabaseQuery{
 		Filter: &notion.DatabaseQueryFilter{
-			Property: "publish",
-			Checkbox: &notion.CheckboxDatabaseQueryFilter{
-				Equals: checkbox,
+			And: []notion.DatabaseQueryFilter{
+				{
+					Property: "publish",
+					Checkbox: &notion.CheckboxDatabaseQueryFilter{
+						Equals: checkbox,
+					},
+				},
+				{
+					Property: "date",
+					Date: &notion.DateDatabaseQueryFilter{
+						After: &filter_timestamp,
+					},
+				},
 			},
 		},
 		Sorts: []notion.DatabaseQuerySort{

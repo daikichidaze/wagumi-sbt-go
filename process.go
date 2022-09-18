@@ -102,8 +102,10 @@ func createContribution(client *notion.Client,
 	prop, err = directCallNotionPageProperties(page_id, map_prop_id["date"])
 	utils.Check(err)
 	start := prop.Date.Start
-	end := DateEnd(prop.Date.End)
-	//endが存在していた場合、文字列として認識してそうでない場合nullを返したい
+	var end string
+	if prop.Date.End != "" {
+		end = prop.Date.End
+	}
 
 	resp_users, err := client.FindPagePropertyByID(ctx, page.ID, map_prop_id["userId"], pagination)
 	utils.Check(err)
@@ -274,7 +276,10 @@ func getSingleUserContributionDataFromDB(client *notion.Client, db_id string, us
 			prop, err = directCallNotionPageProperties(page.ID, map_prop_id["date"])
 			utils.Check(err)
 			start := prop.Date.Start
-			end := DateEnd(prop.Date.End)
+			var end string
+			if prop.Date.End != "" {
+				end = prop.Date.End
+			}
 
 			contribusions = append(contribusions,
 				Contribution{

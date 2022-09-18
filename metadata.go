@@ -13,9 +13,9 @@ type Metadata struct {
 }
 
 type MetadetaProperty struct {
-	// Sns           map[string]string   `json:"sns"`
-	// Tokens        []map[string]string `json:"tokens"`
-	Contribusions []Contribution `json:"contributions"`
+	Sns           map[string]string   `json:"sns"`
+	Tokens        []map[string]string `json:"tokens"`
+	Contribusions []Contribution      `json:"contributions"`
 }
 
 type Contribution struct {

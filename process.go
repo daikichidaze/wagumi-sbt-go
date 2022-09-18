@@ -57,6 +57,9 @@ func createSingleUserMetadataFromMap(client *notion.Client,
 		cntb = append(cntb, page_contribution_map[pageid])
 	}
 
+	sns := make(map[string]string, 0)
+	tokens := make([]map[string]string, 0)
+
 	return Metadata{
 		Name:         name,
 		Description:  desp,
@@ -64,6 +67,8 @@ func createSingleUserMetadataFromMap(client *notion.Client,
 		External_url: url,
 		Properties: MetadetaProperty{
 			Contribusions: cntb,
+			Sns:           sns,
+			Tokens:        tokens,
 		},
 		id:       user_id,
 		filename: fmt.Sprintf("%s.json", user_id),
@@ -98,11 +103,6 @@ func createContribution(client *notion.Client,
 	utils.Check(err)
 	start := prop.Date.Start
 	end := DateEnd(prop.Date.End)
-	// var end string
-	// if prop.Date.End != "" {
-	// 	end = prop.Date.End
-
-	// }
 	//endが存在していた場合、文字列として認識してそうでない場合nullを返したい
 
 	resp_users, err := client.FindPagePropertyByID(ctx, page.ID, map_prop_id["userId"], pagination)

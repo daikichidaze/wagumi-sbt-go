@@ -33,5 +33,5 @@ type ContributionProperty struct {
 
 type Date struct {
 	Start string `json:"start"`
-	End   interface{} `json:"end"`
+	End   string `json:"end"`
 }

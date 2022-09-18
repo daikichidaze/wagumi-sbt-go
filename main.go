@@ -126,8 +126,8 @@ func processMetadata(client *notion.Client,
 
 	if last_exe_log.Message != "initialize" {
 	}
-  checkbox := new(bool)
-  *checkbox = true
+
+	checkbox := func() *bool { b := true; return &b }()
 	query := &notion.DatabaseQuery{
 		Filter: &notion.DatabaseQueryFilter{
 			Property: "publish",
